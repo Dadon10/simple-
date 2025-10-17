@@ -1,0 +1,14 @@
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #0076BE;
+  --color-secondary: #2C3E50;
+  --color-accent: #F9DCB8;
+  --color-bigstone: #4A4A4A;
+  --color-silt: #D1D1D1;
+}
