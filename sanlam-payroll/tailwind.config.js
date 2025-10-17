@@ -12,7 +12,19 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Inter', 'Roboto', ...defaultTheme.fontFamily.sans],
+            },
+            colors: {
+                sanlam: {
+                    primary: '#0076BE', // Lochmara Blue
+                    secondary: '#2C3E50', // Kuroi Black
+                    accent: '#F9DCB8', // Mikado Yellow
+                    bigstone: '#4A4A4A',
+                    silt: '#D1D1D1',
+                },
+            },
+            boxShadow: {
+                card: '0 2px 8px rgba(0, 0, 0, 0.08)',
             },
         },
     },
