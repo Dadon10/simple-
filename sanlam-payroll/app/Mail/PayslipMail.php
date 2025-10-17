@@ -8,6 +8,8 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Payslip;
+use Illuminate\Mail\Mailables\Attachment;
 
 class PayslipMail extends Mailable
 {
@@ -16,7 +18,7 @@ class PayslipMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public Payslip $payslip)
     {
         //
     }
@@ -27,7 +29,7 @@ class PayslipMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Payslip Mail',
+            subject: 'Your Payslip',
         );
     }
 
@@ -37,7 +39,10 @@ class PayslipMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.payslip',
+            with: [
+                'payslip' => $this->payslip,
+            ],
         );
     }
 
@@ -48,6 +53,10 @@ class PayslipMail extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            Attachment::fromStorageDisk('public', $this->payslip->pdf_path)
+                ->as('payslip.pdf')
+                ->withMime('application/pdf'),
+        ];
     }
 }
